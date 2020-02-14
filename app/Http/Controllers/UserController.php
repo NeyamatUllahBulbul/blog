@@ -68,7 +68,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['user']=User::findOrFail($id);
+        return view('admin.user.edit',$data);
     }
 
     /**
@@ -78,9 +79,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users,email,'.$id,
+            'phone'=>'required|unique:users,phone,'.$id,
+        ]);
+        User::findOrFail($id)->update($request->all());
+        return redirect()->route('user.index');
+
     }
 
     /**
