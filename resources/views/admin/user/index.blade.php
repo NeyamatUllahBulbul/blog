@@ -27,6 +27,11 @@
                                     <td>{{$user->phone}}</td>
                                     <td>
                                         <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+                                        <form action="{{route('user.destroy',$user->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
