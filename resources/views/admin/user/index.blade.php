@@ -11,6 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">User list</h3>
@@ -39,7 +40,7 @@
                                         <form action="{{route('user.destroy',$user->id)}}" method="post">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

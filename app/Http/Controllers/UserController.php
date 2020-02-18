@@ -47,7 +47,8 @@ class UserController extends Controller
         ]);
         $data=$request->all();
         $data['password']= Hash::make($data['password']);
-        User::create($data);
+        User::create($data);\
+        session()->flash('message','User created successfully');
         return redirect()->route('user.index');
     }
 
@@ -90,6 +91,7 @@ class UserController extends Controller
             'phone'=>'required|unique:users,phone,'.$id,
         ]);
         User::findOrFail($id)->update($request->all());
+        session()->flash('message','User updated successfully');
         return redirect()->route('user.index');
 
     }
@@ -103,6 +105,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        session()->flash('message','User deleted successfully');
         return redirect()->route('user.index');
     }
 }
