@@ -1,4 +1,15 @@
 @extends('layouts.admin.master')
+@section('breadcrumb')
+<!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{route('user.index')}}">User</a></li>
+            <li class="breadcrumb-item"><a href="{{route('user.index')}}">User list</a></li>
+            <li class="breadcrumb-item active">Edit user</li>
+        </ol>
+    </div>
+@endsection
 @section('content')
     <div class="row">
         <!-- left column -->
@@ -20,7 +31,7 @@
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
             </div>
