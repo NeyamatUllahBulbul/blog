@@ -19,3 +19,4 @@ Route::get('dashboard',function(){
 })->name('dashboard');
 Route::resource('user','UserController');
 Route::resource('category','CategoryController')->except(['show']);
+Route::resource('author','AuthorController')->except(['show']);
