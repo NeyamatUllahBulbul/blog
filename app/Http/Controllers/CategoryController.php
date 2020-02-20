@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['title']="List of categories";
+        $data['categories']=Category::paginate(2);
+        $data['serial']=managePaginationSerial($data['categories']);
+        return view('admin.category.index',$data);
     }
 
     /**
@@ -24,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data['title']="Create new category";
+        return view('admin.category.create',$data);
     }
 
     /**
@@ -35,7 +39,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'status'=>'required'
+        ]);
+        Category::create($request->all());
+        session()->flash('message','Category created successfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -57,7 +67,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $data['title']="Edit category";
+        $data['category']=$category;
+        return view('admin.category.edit',$data);
     }
 
     /**
@@ -69,7 +81,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'status'=>'required'
+        ]);
+        $category->update($request->all());
+        session()->flash('message','Category updated successfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -80,6 +98,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('message','Category deleted successfully');
+        return redirect()->route('category.index');
     }
 }
