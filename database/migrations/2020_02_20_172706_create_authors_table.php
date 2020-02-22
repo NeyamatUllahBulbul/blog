@@ -18,9 +18,10 @@ class CreateAuthorsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone',15)->unique();
-            $table->string('address');
-            $table->string('photo')->nullable();
-            $table->string('total_post')->nullable();
+            $table->text('address');
+            $table->text('photo')->nullable();
+            $table->integer('total_post')->default(0);
+            $table->enum('status',['Active','Inactive']);
             $table->timestamps();
         });
     }

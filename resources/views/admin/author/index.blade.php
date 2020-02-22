@@ -25,6 +25,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>Status</th>
+                            <th>Total post</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -35,6 +37,8 @@
                                 <td>{{$author->name}}</td>
                                 <td>{{$author->email}}</td>
                                 <td>{{$author->phone}}</td>
+                                <td>{{$author->status}}</td>
+                                <td>{{$author->total_post}}</td>
                                 <td>
                                     <a href="{{route('author.edit',$author->id)}}" class="btn btn-primary">Edit</a>
                                     <form action="{{route('author.destroy',$author->id)}}" method="post">

@@ -10,6 +10,8 @@ class Author extends Model
         'name',
         'email',
         'phone',
-        'address'
+        'address',
+        'address',
+        'status'
     ];
 }

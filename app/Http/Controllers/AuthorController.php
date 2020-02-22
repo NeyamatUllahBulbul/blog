@@ -86,11 +86,12 @@ class AuthorController extends Controller
 
         $request->validate([
             'name'=>'required',
-            'email'=>'required|email|unique:authors,email,'.$request->email,
-            'phone'=>'required|unique:authors,phone,'.$author->phone,
+            'email'=>'required|email|unique:authors,email,'.$author->id,
+            'phone'=>'required|unique:authors,phone,'.$author->id,
             'address'=>'required',
         ]);
         $author->update($request->all());
+        session()->flash('message','Author updated successfully');
         return redirect()->route('author.index');
     }
 
