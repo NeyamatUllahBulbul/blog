@@ -65,7 +65,9 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $data['title']="Author details";
+        $data['author']=$author;
+        return view('admin.author.show',$data);
     }
 
     /**
