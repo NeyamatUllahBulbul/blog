@@ -45,7 +45,14 @@ class AuthorController extends Controller
             'phone'=>'required|unique:authors',
             'address'=>'required',
         ]);
-        Author::create($request->all());
+        $data=$request->all();
+        if($request->photo) {
+            $path = 'images/authors';
+            $img = $request->photo;
+            $img->move($path, $img->getClientOriginalName());
+            $data['photo']=$path.'/'.$img->getClientOriginalName();
+        }
+        Author::create($data);
         session()->flash('message','Author created successfully');
         return redirect()->route('author.index');
     }
@@ -90,7 +97,14 @@ class AuthorController extends Controller
             'phone'=>'required|unique:authors,phone,'.$author->id,
             'address'=>'required',
         ]);
-        $author->update($request->all());
+        $data=$request->all();
+        if($request->photo) {
+            $path = 'images/authors';
+            $img = $request->photo;
+            $img->move($path, $img->getClientOriginalName());
+            $data['photo']=$path.'/'.$img->getClientOriginalName();
+        }
+        $author->update($data);
         session()->flash('message','Author updated successfully');
         return redirect()->route('author.index');
     }

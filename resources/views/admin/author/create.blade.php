@@ -19,7 +19,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('author.store')}}" method="post">
+                <form role="form" action="{{route('author.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     {{--@if ($errors->any())--}}
                         {{--<div class="alert alert-danger">--}}
