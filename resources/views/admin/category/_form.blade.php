@@ -8,7 +8,6 @@
 <div class="form-group">
     <label for="status">Status</label>
     <br>
-
     <input type="radio" name="status" @if(old('status',isset($category)?$category->status:null)=='Active') checked @endif value="Active" id="active">
     <label for="active">Active</label>
     <input type="radio" name="status" @if(old('status',isset($category)?$category->status:null)=='Inactive') checked @endif value="Inactive" id="inactive">

@@ -46,15 +46,19 @@ class AuthorController extends Controller
             'address'=>'required',
         ]);
         $data=$request->all();
-        if($request->photo) {
-            $path = 'images/authors';
-            $img = $request->photo;
-            $img->move($path, $img->getClientOriginalName());
-            $data['photo']=$path.'/'.$img->getClientOriginalName();
+        if ($request->photo){
+            $data['photo']=$this->fileUpload($request->photo);
         }
         Author::create($data);
         session()->flash('message','Author created successfully');
         return redirect()->route('author.index');
+    }
+
+    private function fileUpload($img){
+        $path='images/authors';
+        $img->move($path,$img->getClientOriginalName());
+        $fullpath=$path.'/'.$img->getClientOriginalName();
+        return $fullpath;
     }
 
     /**
@@ -100,11 +104,17 @@ class AuthorController extends Controller
             'address'=>'required',
         ]);
         $data=$request->all();
-        if($request->photo) {
-            $path = 'images/authors';
-            $img = $request->photo;
-            $img->move($path, $img->getClientOriginalName());
-            $data['photo']=$path.'/'.$img->getClientOriginalName();
+//        if($request->photo) {
+//            $path = 'images/authors';
+//            $img = $request->photo;
+//            $img->move($path, $img->getClientOriginalName());
+//            $data['photo']=$path.'/'.$img->getClientOriginalName();
+//        }
+        if ($request->photo){
+            $data['photo']=$this->fileUpload($request->photo);
+            if ($author->photo && file_exists($author->photo)){
+                unlink($author->photo);
+            }
         }
         $author->update($data);
         session()->flash('message','Author updated successfully');
@@ -119,6 +129,9 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
+        if ($author->photo && file_exists($author->photo)){
+            unlink($author->photo);
+        }
         $author->delete();
         session()->flash('message','Author deleted successfully');
         return redirect()->route('author.index');

@@ -17,7 +17,7 @@
                     <h3 class="card-title">author list</h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body ">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
