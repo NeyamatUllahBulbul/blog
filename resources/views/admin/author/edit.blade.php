@@ -26,7 +26,6 @@
                     @method('put')
                     <div class="card-body">
                         @include('admin.author._form')
-
                     </div>
                     <!-- /.card-body -->
 
