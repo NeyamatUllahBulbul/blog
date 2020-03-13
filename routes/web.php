@@ -14,10 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('dashboard',function(){
-    return view('admin.dashboard');
-})->name('dashboard');
-Route::resource('user','UserController');
-Route::resource('category','CategoryController')->except(['show']);
-Route::resource('author','AuthorController');
-Route::resource('post','PostController');
+Route::auth();
+
+Route::group(['middleware'=>'auth'],function (){
+    Route::get('dashboard',function(){
+        return view('admin.dashboard',['title'=>'Dashboard']);
+    })->name('dashboard');
+    Route::resource('user','UserController');
+    Route::resource('category','CategoryController')->except(['show']);
+    Route::resource('author','AuthorController');
+    Route::resource('post','PostController');
+});
+
