@@ -1,3 +1,4 @@
+
 @extends('layouts.admin.master')
 @section('breadcrumb')
     <div class="col-sm-6">
@@ -31,11 +32,11 @@
                                 </tr>
                                 <tr>
                                     <td>Category</td>
-                                    <td>{{$post->category_id}}</td>
+                                    <td>{{$post->category->name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Author</td>
-                                    <td>{{$post->author_id}}</td>
+                                    <td>{{$post->author->name}}</td>
                                 </tr>
                             </table>
                         </div>

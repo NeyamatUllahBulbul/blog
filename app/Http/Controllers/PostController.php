@@ -74,7 +74,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $data['title']='Post Details';
-        $data['post']=$post;
+        $data['post'] = $post->with('category','author')->get();
+//        dd($data);
         return view('admin.post.show',$data);
     }
 
