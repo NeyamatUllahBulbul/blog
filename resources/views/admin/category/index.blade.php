@@ -24,6 +24,7 @@
                             <th style="width: 10px">Sl No</th>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Is Featured</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -33,6 +34,7 @@
                                     <td>{{$serial++}}</td>
                                     <td>{{$category->name}}</td>
                                     <td>{{$category->status}}</td>
+                                    <td>{{$category->is_featured==1?'Yes':'No'}}</td>
                                     <td>
                                         <a href="{{route('category.edit',$category->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{route('category.destroy',$category->id)}}" method="post">
