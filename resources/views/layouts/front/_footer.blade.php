@@ -1,5 +1,4 @@
-<div class="footer">
-    <div class="container">
+
         <div class="row">
             <div class="col-12">
                 <div class="copyright">
@@ -11,5 +10,3 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>

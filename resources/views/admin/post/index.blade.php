@@ -25,7 +25,10 @@
                             <th>Title</th>
                             <th>Category</th>
                             <th>Is Featured</th>
+                            <th>Is Editor's Pick</th>
+                            <th>Is Trending</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,11 +38,13 @@
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->category_id}}</td>
                                 <td>{{$post->is_featured==1?'Yes':'No'}}</td>
+                                <td>{{$post->is_editors_pick==1?'Yes':'No'}}</td>
+                                <td>{{$post->is_trending==1?'Yes':'No'}}</td>
                                 <td>{{$post->status}}</td>
                                 <td>
                                     <a href="{{route('post.edit',$post->id)}}" class="btn btn-primary">Edit</a>
                                     <a href="{{route('post.show',$post->id)}}" class="btn btn-primary">Show Details</a>
-                                    <form action="{{route('post.destroy',$post->id)}}" method="post">
+                                    <form action="{{route('post.destroy',$post->id,$post->author_id)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>

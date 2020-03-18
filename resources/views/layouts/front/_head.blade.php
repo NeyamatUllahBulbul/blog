@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<head>
     <title>Meranda &mdash; Website Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,4 +15,3 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/aos.css')}}">
     <link href="{{asset('assets/front/css/jquery.mb.YTPlayer.min.css')}}" media="all" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
-</head>

@@ -1,13 +1,4 @@
-<div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-</div>
-<div class="header-top">
-    <div class="container">
+
         <div class="row align-items-center">
             <div class="col-12 col-lg-6 d-flex">
                 <a href="#" class="site-logo">
@@ -31,6 +22,5 @@
             <div class="col-6 d-block d-lg-none text-right">
             </div>
         </div>
-    </div>
 
-</div>
+

@@ -31,6 +31,14 @@
                                     <td>{{$post->is_featured==1?'Yes':'No'}}</td>
                                 </tr>
                                 <tr>
+                                    <td>Is featured</td>
+                                    <td>{{$post->is_editors_pick==1?'Yes':'No'}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Is featured</td>
+                                    <td>{{$post->is_trending==1?'Yes':'No'}}</td>
+                                </tr>
+                                <tr>
                                     <td>Category</td>
                                     <td>{{$post->category->name}}</td>
                                 </tr>

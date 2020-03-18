@@ -53,6 +53,8 @@ class PostController extends Controller
         $data=$request->all();
         $data['photo']=$this->fileUpload($request->photo);
         Post::create($data);
+//        Author::where('id',$request->author_id)->update('total_post'=='total_post'+1);
+        Author::where('id',$request->author_id)->increment('total_post');
         session()->flash('message','Post created successfully');
         return redirect()->route('post.index');
     }
@@ -131,6 +133,7 @@ class PostController extends Controller
             unlink($post->photo);
         }
         $post->delete();
+        Author::where('id',$post->author_id)->increment('total_post',-1);
         session()->flash('message','Post deleted successfully');
         return redirect()->route('post.index');
     }
