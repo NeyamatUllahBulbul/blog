@@ -11,4 +11,10 @@ class Category extends Model
         'status',
         'is_featured'
     ];
+
+
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

@@ -52,7 +52,7 @@
                             <div class="post-entry-1">
                                 <a href="post-single.html"><img src="{{asset($editors_pick[1]->photo)}}" alt="Image" class="img-fluid"></a>
                                 <h2><a href="blog-single.html">{{$editors_pick[1]->title}}</a></h2>
-                                <p>{{substr($editors_pick[1]->details,20)}}</p>
+                                <p>{{substr($editors_pick[1]->details,0,200)}}</p>
                                 <div class="post-meta">
                                     <span class="d-block"><a href="#">{{$editors_pick[1]->author->name}}</a> in <a href="#">{{$editors_pick[1]->category->name}}</a></span>
                                     <span class="date-read">{{date('M d',strtotime($editors_pick[1]->created_at))}}<span class="mx-1">&bullet;</span> {{$editors_pick[1]->total_read}}<span class="icon-star2"></span></span>
@@ -82,16 +82,7 @@
                         <h2>Trending</h2>
                     </div>
                     @foreach($trending as $id=>$post)
-                        <div class="trend-entry d-flex">
-                            <div class="number align-self-start">{{++$id}}</div>
-                            <div class="trend-contents">
-                                <h2><a href="#">{{$post->title}}</a></h2>
-                                <div class="post-meta">
-                                    <span class="d-block"><a href="#">{{$post->author->name}}</a> in <a href="#">{{$post->category->name}}</a></span>
-                                    <span class="date-read">{{date('M d',strtotime($post->created_at))}}<span class="mx-1">&bullet;</span> {{$post->total_post}} <span class="icon-star2"></span></span>
-                                </div>
-                            </div>
-                        </div>
+                        @include('front.postsWIthoutImage')
                     @endforeach
                     <p>
                         <a href="#" class="more">See All Trends <span class="icon-keyboard_arrow_right"></span></a>
@@ -108,7 +99,7 @@
                     <div class="contents">
                         <span class="caption">Editor's Pick</span>
                         <h2><a href="blog-single.html">{{$editors_pick[0]->title}}</a></h2>
-                        <p class="mb-3">{{substr($editors_pick[0]->details,0,5)}}</p>
+                        <p class="mb-3">{{substr($editors_pick[0]->details,0,250)}}</p>
                         <div class="post-meta">
                             <span class="d-block"><a href="#">{{$editors_pick[0]->author->name}}</a> in <a href="#">{{$editors_pick[0]->category->name}}</a></span>
                             <span class="date-read">{{date('M d',strtotime($editors_pick[0]->created_at))}} <span class="mx-1">&bullet;</span> {{$editors_pick[0]->total_read}} <span class="icon-star2"></span></span>
@@ -121,82 +112,28 @@
     <div class="site-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="section-title">
-                        <h2>Politics</h2>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_1.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
+                @foreach($featured_categories as $categories)
+                    <div class="col-lg-6">
+                        <div class="section-title">
+                            <h2>{{$categories->name}}</h2>
                         </div>
+                        @foreach($categories->posts as $id=>$post)
+                            @if($id < 2)
+                                <div class="post-entry-2 d-flex">
+                                    <div class="thumbnail" style="background-image: url({{asset($post->photo)}})"></div>
+                                    <div class="contents">
+                                        <h2><a href="blog-single.html">{{$post->title}}</a></h2>
+                                        <p class="mb-3">{{substr($post->details,0,150)}}</p>
+                                        <div class="post-meta">
+                                            <span class="d-block"><a href="#">{{$post->author->name}}</a> in <a href="#">{{$post->category->name}}</a></span>
+                                            <span class="date-read">{{date('M d',strtotime($post->created_at))}} <span class="mx-1">&bullet;</span> {{$post->total_read}} <span class="icon-star2"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_2.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_3.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="section-title">
-                        <h2>Business</h2>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_1.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_2.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail" style="background-image: url('images/img_v_3.jpg')"></div>
-                        <div class="contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -207,85 +144,27 @@
                     <div class="section-title">
                         <h2>Recent Posts</h2>
                     </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail order-md-2" style="background-image: url('images/img_h_4.jpg')"></div>
-                        <div class="contents order-md-1 pl-0">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
+                    @foreach($recent_posts as $post)
+                        <div class="post-entry-2 d-flex">
+                            <div class="thumbnail order-md-2" style="background-image: url({{asset($post->photo)}})"></div>
+                            <div class="contents order-md-1 pl-0">
+                                <h2><a href="blog-single.html">{{$post->title}}</a></h2>
+                                <p class="mb-3">{{substr($post->details,0,150)}}</p>
+                                <div class="post-meta">
+                                    <span class="d-block"><a href="#">{{$post->author->name}}</a> in <a href="#">{{$post->category->name}}</a></span>
+                                    <span class="date-read">{{date('M d',strtotime($post->created_at))}}<span class="mx-1">&bullet;</span> {{$post->total_read}} <span class="icon-star2"></span></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail order-md-2" style="background-image: url('images/img_h_3.jpg')"></div>
-                        <div class="contents order-md-1 pl-0">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-entry-2 d-flex">
-                        <div class="thumbnail order-md-2" style="background-image: url('images/img_h_3.jpg')"></div>
-                        <div class="contents order-md-1 pl-0">
-                            <span class="caption mb-4 d-block">Editor's Pick</span>
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi temporibus praesentium neque, voluptatum quam quibusdam.</p>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-3">
                     <div class="section-title">
                         <h2>Popular Posts</h2>
                     </div>
-                    <div class="trend-entry d-flex">
-                        <div class="number align-self-start">01</div>
-                        <div class="trend-contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trend-entry d-flex">
-                        <div class="number align-self-start">02</div>
-                        <div class="trend-contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trend-entry d-flex">
-                        <div class="number align-self-start">03</div>
-                        <div class="trend-contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="trend-entry d-flex pl-0">
-                        <div class="number align-self-start">04</div>
-                        <div class="trend-contents">
-                            <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                            <div class="post-meta">
-                                <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">News</a></span>
-                                <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach($popular_posts as $post)
+                        @include('front.postsWIthoutImage')
+                    @endforeach
                     <p>
                         <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
                     </p>

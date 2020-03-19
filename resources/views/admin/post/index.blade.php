@@ -36,7 +36,7 @@
                             <tr>
                                 <td>{{$serial++}}</td>
                                 <td>{{$post->title}}</td>
-                                <td>{{$post->category_id}}</td>
+                                <td>{{$post->category->name}}</td>
                                 <td>{{$post->is_featured==1?'Yes':'No'}}</td>
                                 <td>{{$post->is_editors_pick==1?'Yes':'No'}}</td>
                                 <td>{{$post->is_trending==1?'Yes':'No'}}</td>

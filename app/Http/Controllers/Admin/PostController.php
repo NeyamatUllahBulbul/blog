@@ -73,10 +73,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
         $data['title']='Post Details';
-        $data['post'] = $post->with('category','author')->first();
+        $data['post'] = Post::with('category','author')->findOrFail($id);
         return view('admin.post.show',$data);
     }
 
@@ -112,9 +112,11 @@ class PostController extends Controller
             'photo'=>'mimes:jpeg,bmp,png'
         ]);
         $data=$request->all();
-        $data['photo']=$this->fileUpload($request->photo);
-        if (file_exists($post->photo)){
-            unlink($post->photo);
+        if ($request->hasFile('photo')){
+            $data['photo']=$this->fileUpload($request->photo);
+            if (file_exists($post->photo)){
+                unlink($post->photo);
+            }
         }
         $post->update($data);
         session()->flash('message','Post updated successfully');
