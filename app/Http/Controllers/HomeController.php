@@ -30,10 +30,7 @@ class HomeController extends Controller
             ->orderBy('id','DESC')
             ->limit(3)->get();
 
-        $data['popular_posts']=Post::with('author','category')
-            ->where('status','Published')
-            ->orderBy('total_read','DESC')
-            ->limit(4)->get();
+        $data['popular_posts']=Post::popular();
         return view('front.index',$data);
     }
 }
