@@ -28,100 +28,65 @@
                             <h2 class="mb-5">6 Comments</h2>
                         </div>
                         <ul class="comment-list">
+                            @foreach($comments as $comment)
                             <li class="comment">
                                 <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
+                                    <img src="{{asset('images/user.png')}}" alt="Image placeholder">
                                 </div>
                                 <div class="comment-body">
-                                    <h3>Jean Doe</h3>
+                                    <h3>John Doe{{$comment->name}}</h3>
                                     <div class="meta">January 9, 2018 at 2:21pm</div>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                            </li>
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                                <ul class="children">
-                                    <li class="comment">
-                                        <div class="vcard bio">
-                                            <img src="images/person_1.jpg" alt="Image placeholder">
+
+
+                                    <!--Modal-->
+                                    <button class="btn btn-primary" id="myBtn">Reply</button>
+                                    <div id="myModal" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content">
+                                            <span class="close">&times;</span>
+                                            <div class="comment-form-wrap pt-5">
+                                                <form action="#" class="p-5 bg-light">
+                                                    <div class="form-group">
+                                                        <label for="message">Message</label>
+                                                        <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary py-3">Send Reply</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="comment-body">
-                                            <h3>Jean Doe</h3>
-                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                            <p><a href="#" class="reply">Reply</a></p>
-                                        </div>
-                                        <ul class="children">
-                                            <li class="comment">
-                                                <div class="vcard bio">
-                                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                                </div>
-                                                <div class="comment-body">
-                                                    <h3>Jean Doe</h3>
-                                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                    <p><a href="#" class="reply">Reply</a></p>
-                                                </div>
-                                                <ul class="children">
-                                                    <li class="comment">
-                                                        <div class="vcard bio">
-                                                            <img src="images/person_1.jpg" alt="Image placeholder">
-                                                        </div>
-                                                        <div class="comment-body">
-                                                            <h3>Jean Doe</h3>
-                                                            <div class="meta">January 9, 2018 at 2:21pm</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                                            <p><a href="#" class="reply">Reply</a></p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="comment">
-                                <div class="vcard bio">
-                                    <img src="images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                    <h3>Jean Doe</h3>
-                                    <div class="meta">January 9, 2018 at 2:21pm</div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                    <p><a href="#" class="reply">Reply</a></p>
+
+                                    </div>
+                                    <!--Modal End-->
                                 </div>
                             </li>
+                                @endforeach
                         </ul>
 
                         <div class="comment-form-wrap pt-5">
                             <div class="section-title">
                                 <h2 class="mb-5">Leave a comment</h2>
                             </div>
-                            <form action="#" class="p-5 bg-light">
+                            <form action="{{route('comment.store')}}" method="post" class="p-5 bg-light">
+                                @csrf
                                 <div class="form-group">
                                     <label for="name">Name *</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <input type="text" name="name" class="form-control" id="name">
                                 </div>
+                                <input name="post_id" type="hidden" value="{{$post->id}}">
                                 <div class="form-group">
                                     <label for="email">Email *</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" name="email" class="form-control" id="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="website">Website</label>
-                                    <input type="url" class="form-control" id="website">
+                                    <input type="url" name="website" class="form-control" id="website">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message</label>
-                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Post Comment" class="btn btn-primary py-3">
@@ -144,4 +109,29 @@
             </div>
         </div>
     </div>
+    <script>// Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }</script>
 @endsection

@@ -13,6 +13,7 @@
 
 Route::get('/','HomeController@index');
 Route::get('details/{id}','BlogController@show')->name('front.blog.show');
+Route::resource('comment','CommentController');
 
 Route::auth();
 

@@ -15,3 +15,5 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/aos.css')}}">
     <link href="{{asset('assets/front/css/jquery.mb.YTPlayer.min.css')}}" media="all" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/front/css/extra.css')}}">
+
