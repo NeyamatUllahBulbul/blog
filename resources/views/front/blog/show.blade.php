@@ -28,6 +28,7 @@
                             <h2 class="mb-5">6 Comments</h2>
                         </div>
                         <ul class="comment-list">
+                            @if($comments != null && count($comments) > 0)
                             @foreach($comments as $comment)
                             <li class="comment">
                                 <div class="vcard bio">
@@ -63,6 +64,7 @@
                                 </div>
                             </li>
                                 @endforeach
+                                @endif
                         </ul>
 
                         <div class="comment-form-wrap pt-5">

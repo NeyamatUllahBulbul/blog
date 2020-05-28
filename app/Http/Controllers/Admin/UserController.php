@@ -45,6 +45,7 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'phone'=>'required|unique:users',
+            'user_role'=>'required',
             'password'=>'required|min:6|confirmed',
         ]);
         $data=$request->all();

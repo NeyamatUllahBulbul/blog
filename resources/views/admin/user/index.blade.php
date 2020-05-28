@@ -25,6 +25,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
+                            <th>User Role</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -35,6 +36,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
+                                    <td>{{$user->User_role}}</td>
                                     <td>
                                         <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary">Edit</a>
                                         <form action="{{route('user.destroy',$user->id)}}" method="post">

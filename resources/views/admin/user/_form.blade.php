@@ -19,3 +19,12 @@
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
+<div class="form-group">
+    <label for="user_role">User Role</label>
+    <select class="form-control" name="user_role" id="user_role">
+        <option value="">Select</option>
+        <option value="admin">Admin</option>
+        <option value="writer">Writer</option>
+        <option value="reader">Reader</option>
+    </select>
+</div>

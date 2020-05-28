@@ -12,7 +12,8 @@ class BlogController extends Controller
         $data['post']=Post::findOrFail($id)->increment('total_read');
         $data['post']=Post::with('category','author')->findOrFail($id);
         $data['popular_posts']= Post::popular();
-        $data['comments']=Comment::where('post_id',$id)->first();
+        $data['comments']=Comment::where('post_id',$id)->get();
+//        dd($data['comments']);
         return view('front.blog.show',$data);
     }
 }
