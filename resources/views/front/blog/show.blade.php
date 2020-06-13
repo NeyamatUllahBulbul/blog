@@ -91,8 +91,13 @@
                                     <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
+                                    @if(auth::user())
                                     <input type="submit" value="Post Comment" class="btn btn-primary py-3">
+                                    @else
+                                    <a  class="btn btn-danger py-3" href="{{url('login')}}">Login to post a comment</a>
+                                    @endif
                                 </div>
+
                             </form>
                         </div>
                     </div>

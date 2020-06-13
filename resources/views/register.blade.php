@@ -28,7 +28,7 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg">Register a new membership</p>
 
-            <form action="{{route('register')}}" method="post">
+            <form action="{{url('register')}}" method="post">
                 @csrf
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="name" placeholder="Full name">
@@ -37,6 +37,9 @@
                             <span class="fas fa-user"></span>
                         </div>
                     </div>
+                    @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control" placeholder="Email">
@@ -45,6 +48,9 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" name="password" class="form-control" placeholder="Password">
@@ -53,14 +59,20 @@
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Retype password">
+                    <input type="password" id="password-confirm" name="password_confirmation" class="form-control" placeholder="Retype password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+                    @error('confirm')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="row">
                     <div class="col-8">
